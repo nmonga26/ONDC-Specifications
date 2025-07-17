@@ -1,0 +1,6 @@
+[submodule "ONDC-RET-Specifications"]
+	path = ONDC-RET-Specifications
+	url = https://github.com/nmonga26/ONDC-RET-Specifications
+[submodule "ONDC-Protocol-Specs"]
+	path = ONDC-Protocol-Specs
+	url = https://github.com/nmonga26/ONDC-Protocol-Specs
