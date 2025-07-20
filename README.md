@@ -1,176 +1,272 @@
 # ONDC Specifications Hub
 
-This repository serves as the central hub for all ONDC (Open Network for Digital Commerce) specifications, organized using Git submodules for efficient management and version control.
+This repository serves as the central hub for all ONDC (Open Network for Digital Commerce) specifications, organized using Git submodules for efficient management and version control. It consolidates all domain-specific specifications while maintaining consistent standards and guidelines across the ecosystem.
+
+## Table of Contents
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Getting Started](#getting-started)
+- [Specification Guidelines](#specification-guidelines)
+- [Working with Submodules](#working-with-submodules)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Troubleshooting](#troubleshooting)
 
 ## Overview
 
-The ONDC Specifications Hub consolidates all domain-specific specifications into a single, well-organized structure. Each specification domain is maintained as a separate repository and linked here as a Git submodule, allowing for independent versioning while maintaining a unified view.
+The ONDC Specifications Hub provides:
+- Centralized access to all ONDC domain specifications
+- Consistent structure and standards across domains
+- Independent versioning for each domain
+- Unified documentation and contribution guidelines
 
 ## Repository Structure
 
 ```
 ONDC-Specifications/
-├── SPECIFICATIONS/
-│   ├── ONDC-Protocol-Specs/          # Core protocol specifications
-│   ├── ONDC-RET-Specifications/      # Retail domain specifications
-└── README.md                          # This file
+  │── ONDC-Protocol-Specs/          # Core protocol specifications
+  │── ONDC-RET-Specifications/      # Retail domain specifications
+  │── ONDC-LOG-Specifications/      # Logistics domain specifications
+  │── ONDC-SRV-Specifications/      # Services domain specifications
+  │── ONDC-{DOMAIN}-Specifications/ # Other domain specifications
+  └── README.md                          # This file
+```
+
+### Domain Repository Structure
+Each domain MUST follow this standard structure:
+```
+/ONDC-{DOMAIN}-Specifications
+├── README.md
+├── Usage.md
+├── Contribution.md
+├── CHANGELOG.md
+├── Error-codes.xlsx
+├── index.html
+├── build_util
+├── api/
+│   ├── brd_images/
+│   ├── build/
+│   ├── components/
+│   │   ├── Examples/
+│   │   ├── attributes/
+│   │   ├── enums/
+│   │   ├── error_codes/
+│   │   ├── flows/
+│   │   ├── tags/
+│   │   └── utils/
+│   └── docs/
+├── beckn-core/ (submodule)
+└── ui/
 ```
 
 ## Getting Started
 
-### Clone Repository with All Submodules
+### Quick Setup
 
-To clone this repository along with all specification submodules:
-
+Clone the repository with all specification submodules:
 ```bash
 git clone --recursive https://github.com/nmonga26/ONDC-Specifications.git
+cd ONDC-Specifications
 ```
 
-### If Already Cloned Without Submodules
-
-If you've already cloned the repository without the `--recursive` flag:
-
-```bash
-git submodule init
-git submodule update
-```
-
-Or in a single command:
-
+If already cloned without submodules:
 ```bash
 git submodule update --init --recursive
 ```
 
-## 🔧 Working with Submodules
+## Specification Guidelines
 
-### Update a Specific Submodule
+### Adding New Specifications
 
-To update a specific specification submodule to its latest version:
+When adding new specifications or updating existing ones, follow these requirements:
 
+#### 1. File Naming Conventions
+- API specs: `service_name_action.yaml`
+- Examples: `{service_type}_{action}.json`
+- Flow diagrams: `{service_type}_flow_{scenario}.png`
+- Documentation: `{feature}_specification.md`
+
+#### 2. Required Files for New Features
+- [ ] API specification in `/api/components/`
+- [ ] Examples in JSON and YAML formats
+- [ ] Flow diagrams in `/api/brd_images/`
+- [ ] Attribute definitions in `/api/components/attributes/`
+- [ ] Enum definitions (if applicable)
+- [ ] Updated error codes
+- [ ] Documentation in `/api/docs/`
+
+#### 3. API Specification Format
+```yaml
+openapi: 3.0.0
+info:
+  title: ONDC {Domain} API
+  version: "draft-2.x.x"
+  description: |
+    Detailed description of the API purpose
+    
+paths:
+  /{endpoint}:
+    post:
+      summary: Brief description
+      description: Detailed description
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/{Schema}'
+      responses:
+        '200':
+          description: Success response
+        '400':
+          description: Error scenarios
+```
+
+#### 4. Documentation Requirements
+Each specification MUST include:
+- Purpose and use cases
+- Request/response formats
+- Required vs optional fields
+- Business rules and validations
+- Error scenarios
+- Example flows
+
+## Working with Submodules
+
+### Common Operations
+
+#### Update a Specific Domain
 ```bash
-# Navigate to the specific submodule
-cd SPECIFICATIONS/ONDC-Protocol-Specs
+# Navigate to the submodule
+cd SPECIFICATIONS/ONDC-RET-Specifications
 
-# Pull the latest changes
+# Pull latest changes
 git pull origin main
 
-# Go back to the main repository
+# Return to main repo and commit
 cd ../..
-
-# Stage the submodule update
-git add SPECIFICATIONS/ONDC-Protocol-Specs
-
-# Commit the change
-git commit -m "Update ONDC-Protocol-Specs to latest version"
-
-# Push to remote
+git add SPECIFICATIONS/ONDC-RET-Specifications
+git commit -m "Update ONDC-RET-Specifications to latest version"
 git push
 ```
 
-### Update All Submodules
-
-To update all submodules to their latest versions:
-
+#### Update All Domains
 ```bash
-# Update all submodules to their latest remote versions
+# Update all submodules
 git submodule update --remote --merge
 
-# Stage all changes
+# Commit all updates
 git add .
-
-# Commit the updates
 git commit -m "Update all specification submodules to latest versions"
-
-# Push to remote
 git push
 ```
 
-### Check Submodule Status
-
-To see the current status of all submodules:
-
+#### Check Status
 ```bash
+# View current status of all submodules
 git submodule status
-```
 
-### Fetch Changes Without Updating
-
-To fetch the latest changes for all submodules without updating them:
-
-```bash
+# Check for available updates
 git submodule foreach git fetch
+git submodule summary
 ```
 
-## 📚 Specification Domains
+### Workflow Guidelines
 
-### Core Specifications
-- **ONDC-Protocol-Specs**: Core ONDC protocol definitions, APIs, and standards
+#### For Domain Maintainers
+1. Work in individual specification repositories
+2. Follow semantic versioning for releases
+3. Update CHANGELOG.md with all changes
+4. Notify hub maintainers of major updates
 
-### Domain-Specific Specifications
-- **ONDC-RET-Specifications**: Retail and e-commerce domain specifications
-- **ONDC-Protocol-Specs**: Open Network for Digital Commerce (ONDC) Protocol Open API Specifications
+#### For Hub Maintainers
+1. Review and update submodules weekly
+2. Ensure all point to stable releases
+3. Update VERSION_COMPATIBILITY.md
+4. Tag hub repository for major milestones
 
-## Workflow Guidelines
-
-### For Specification Maintainers
-
-1. Make changes in the individual specification repository
-2. Follow the versioning and release process for that repository
-3. Notify the hub maintainers when significant updates are released
-
-### For Hub Maintainers
-
-1. Regularly update submodules to include latest stable versions
-2. Ensure all submodules are pointing to stable releases
-3. Document any breaking changes in the main repository
-
-### For Contributors
-
-1. Always work on the individual specification repositories
-2. Follow the contribution guidelines of each specification repository
-3. Do not make direct changes to submodules from this hub repository
-
-## Versioning
-
-- Each specification domain maintains its own semantic versioning
-- This hub repository tags major milestones when multiple specifications are updated
-- Version compatibility matrix is maintained in the docs folder
-
-## Best Practices
-
-1. **Always use recursive clone** when setting up the repository
-2. **Check submodule status** before making updates
-3. **Update submodules individually** when working on specific domains
-4. **Test compatibility** when updating multiple submodules
-5. **Document breaking changes** in commit messages
-6. **Use meaningful commit messages** when updating submodules
+#### For Contributors
+1. Fork the specific domain repository
+2. Create feature branch: `feature/{domain}-{feature-name}`
+3. Follow domain-specific contribution guidelines
+4. Submit PR to domain repository (not hub)
 
 ## Contributing
 
-To contribute to specific specifications:
-1. Navigate to the individual specification repository
-2. Follow the contribution guidelines for that repository
-3. Submit pull requests to the specific repository, not this hub
+### Contribution Process
+
+1. **Identify Target Domain**
+   - Determine which specification domain your contribution affects
+   - Navigate to that specific repository
+
+2. **Follow Domain Guidelines**
+   - Read the domain's Contribution.md
+   - Ensure compliance with specification standards
+   - Validate examples and schemas
+
+3. **Submit Changes**
+   - Create PR in domain repository
+   - Reference any related issues
+   - Include test results and documentation
+
+### PR Checklist
+- [ ] Follows file naming conventions
+- [ ] Includes all required files
+- [ ] Examples validated against schemas
+- [ ] Documentation updated
+- [ ] Build process successful
+- [ ] No breaking changes (or clearly documented)
+
+## Versioning
+
+### Version Management
+
+- **Domain Versions**: Each domain maintains independent semantic versioning
+- **Hub Versions**: Tagged when multiple domains reach major milestones
+- **Compatibility**: See `docs/VERSION_COMPATIBILITY.md` for cross-domain compatibility
+
+### Version Format
+```
+draft-MAJOR.MINOR.PATCH
+```
+- **MAJOR**: Breaking changes
+- **MINOR**: New features (backward compatible)
+- **PATCH**: Bug fixes
 
 ## Troubleshooting
 
-### Submodule Not Initialized
+### Common Issues
+
+#### Submodule Not Initialized
 ```bash
 git submodule update --init --recursive
 ```
 
-### Submodule Stuck on Old Commit
+#### Submodule on Wrong Branch
 ```bash
-cd SPECIFICATIONS/[submodule-name]
+cd SPECIFICATIONS/[domain-name]
 git checkout main
 git pull origin main
 ```
 
-### Merge Conflicts in Submodules
+#### Merge Conflicts in Submodules
 ```bash
-cd SPECIFICATIONS/[submodule-name]
-git status  # Check the conflict
-git checkout --theirs .  # or --ours depending on your needs
+cd SPECIFICATIONS/[domain-name]
+git status
+# Resolve conflicts manually or:
+git checkout --theirs .  # Accept remote changes
+# or
+git checkout --ours .    # Keep local changes
 ```
 
-**Note**: This repository structure uses Git submodules. Make sure you understand [Git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) before making changes.
+#### Submodule Showing Modified Status
+```bash
+# Check what changed
+git diff SPECIFICATIONS/[domain-name]
+
+# Reset if unintended
+git submodule update --init
+```
+---
+
+**Note**: This repository uses Git submodules. Familiarize yourself with [Git submodules documentation](https://git-scm.com/book/en/v2/Git-Tools-Submodules) before making changes.
