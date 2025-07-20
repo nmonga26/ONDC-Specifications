@@ -31,3 +31,6 @@
 [submodule "ONDC-MEC-Specifications"]
 	path = ONDC-MEC-Specifications
 	url = https://github.com/nmonga26/ONDC-MEC-Specifications
+[submodule "mobility-specification"]
+	path = mobility-specification
+	url = https://github.com/nmonga26/mobility-specification
