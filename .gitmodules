@@ -34,6 +34,3 @@
 [submodule "mobility-specification"]
 	path = mobility-specification
 	url = https://github.com/nmonga26/mobility-specification
-[submodule "ONDC-transaction-Specifications"]
-	path = ONDC-transaction-Specifications
-	url = https://github.com/nmonga26/ONDC-transaction-Specifications.git
