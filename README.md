@@ -103,7 +103,7 @@ To fetch the latest changes for all submodules without updating them:
 git submodule foreach git fetch
 ```
 
-## 📚 Specification Domains
+## Specification Domains
 
 ### Core Specifications
 - **ONDC-Protocol-Specs**: Core ONDC protocol definitions, APIs, and standards
@@ -147,7 +147,16 @@ Every domain repository MUST follow this structure:
 │   │   └── utils/
 │   └── docs/
 ├── beckn-core/ (submodule)
+├── ONDC-transaction-Specifications/ (submodule - REQUIRED)
 └── ui/
+```
+
+### 1.3 Required Submodules
+All domain specification repositories MUST include:
+- **ONDC-transaction-specifications**: ONDC Transaction Specifications (MANDATORY)
+ ```bash
+# When creating or updating a domain specification repository:
+git submodule add https://github.com/nmonga26/ONDC-transaction-Specifications.git ONDC-transaction-Specifications
 ```
 
 ## 2. Specification File Guidelines
@@ -466,6 +475,10 @@ info:
   version: draft-2.0.0
   description: |
     API specification for {service description}
+
+    Transaction Specifications: 
+      This API follows ONDC Transaction Specifications for audit, logging, and error handling.
+      Reference: ./ONDC-transaction-Specifications/
 
 servers:
   - url: https://api.ondc.org/{domain}
