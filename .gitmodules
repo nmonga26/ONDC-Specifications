@@ -1,36 +1,36 @@
 [submodule "ONDC-RET-Specifications"]
-	path = ONDC-RET-Specifications
+	path = Transaction Specification/ONDC-RET-Specifications
 	url = https://github.com/nmonga26/ONDC-RET-Specifications
 [submodule "ONDC-Protocol-Specs"]
 	path = ONDC-Protocol-Specs
 	url = https://github.com/nmonga26/ONDC-Protocol-Specs
 [submodule "ONDC-LOG-Specifications"]
-	path = ONDC-LOG-Specifications
+	path = Transaction Specification/ONDC-LOG-Specifications
 	url = https://github.com/nmonga26/ONDC-LOG-Specifications
 [submodule "ONDC-FIS-Specifications"]
-	path = ONDC-FIS-Specifications
+	path = Transaction Specification/ONDC-FIS-Specifications
 	url = https://github.com/nmonga26/ONDC-FIS-Specifications
 [submodule "ONDC-NTS-Specifications"]
 	path = ONDC-NTS-Specifications
 	url = https://github.com/nmonga26/ONDC-NTS-Specifications
 [submodule "Logistics-specifications"]
-	path = Logistics-specifications
+	path = Transaction Specification/Logistics-specifications
 	url = https://github.com/nmonga26/Logistics-specifications
 [submodule "ONDC-Registry-Specifications"]
 	path = ONDC-Registry-Specifications
 	url = https://github.com/nmonga26/ONDC-Registry-Specifications
 [submodule "ONDC-ONEST-Specifications"]
-	path = ONDC-ONEST-Specifications
+	path = Transaction Specification/ONDC-ONEST-Specifications
 	url = https://github.com/nmonga26/ONDC-ONEST-Specifications
 [submodule "ONDC-AGR-Specifications"]
-	path = ONDC-AGR-Specifications
+	path = Transaction Specification/ONDC-AGR-Specifications
 	url = https://github.com/nmonga26/ONDC-AGR-Specifications
 [submodule "ONDC-SRV-Specifications"]
-	path = ONDC-SRV-Specifications
+	path = Transaction Specification/ONDC-SRV-Specifications
 	url = https://github.com/nmonga26/ONDC-SRV-Specifications
 [submodule "ONDC-MEC-Specifications"]
-	path = ONDC-MEC-Specifications
+	path = Transaction Specification/ONDC-MEC-Specifications
 	url = https://github.com/nmonga26/ONDC-MEC-Specifications
 [submodule "mobility-specification"]
-	path = mobility-specification
+	path = Transaction Specification/mobility-specification
 	url = https://github.com/nmonga26/mobility-specification
